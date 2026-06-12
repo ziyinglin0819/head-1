@@ -1,0 +1,741 @@
+/* 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 讓邊框和內邊距不影響元素的總寬高，排邊更精準 */
+}
+
+body {
+    /* 確保 body 也是完全貼齊邊緣 */
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 切實置中 */
+    padding: 20px 10%;
+    background-color: #C73939; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+/* Logo 外層容器 */
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo 連結樣式：確保它是純白、沒底線 */
+.logo img {
+    height: auto;      /* 讓高度隨寬度等比例縮放 */
+    max-height: 40px;  /* 限制最大高度 */
+    display: block;    
+    transition: opacity 0.2s;
+}
+
+.logo img:first-child {
+    transform: translateY(-2px); /* 透過位移把圖標視覺重心往上提 2 像素 */
+    margin-right: 12px;          /* 幫圖標和標準字之間加上舒服的間距 */
+}
+
+.logo img:last-child {
+    width: auto;                 /* 避免標準字被強制拉伸到 100% 寬 */
+}
+
+/* 滑鼠移到 Logo 上時稍微變透明，提示可以點擊 */
+.logo a:hover {
+    opacity: 0.85;
+}
+
+/* 中間導覽選單外層清單 */
+.nav-links {
+    display: flex;
+    list-style: none;/* 移除點點符號 */
+  align-items:center;justify-content:center;
+  margin:0px;
+  padding:0px;
+}
+
+/* 讓選單裡的項目保持間距 */
+.nav-links li {
+    margin: 0 20px;
+}
+
+/* 選單文字樣式：白色、加粗、預設稍微帶一點透明 */
+.nav-links a {
+    display: block;
+    padding: 10px 0;    /* ✨ 關鍵：給文字上下加上對稱的空間，讓 Flex 更精準地抓到中線 */
+    line-height: 1;
+    text-decoration: none;
+    color: #ffffff;         
+    font-weight: 600;
+    transition: opacity 0.2s, text-decoration 0.2s;
+}
+
+/* 💡 關鍵修正：當滑鼠移上去（Hover）時，亮度全開並顯示底線 */
+.nav-links a:hover {
+    opacity: 0.85;             
+    text-decoration: underline; /* 滑鼠移上去顯現底線 */
+}
+
+
+/* 中間導覽選單外層清單 */
+.nav-links {
+    display: flex;
+    list-style: none;/* 移除點點符號 */
+  align-items:center;justify-content:center;
+  margin:0px;
+  padding:0px;
+}
+
+/* 讓選單裡的項目保持間距 */
+.nav-links li {
+    margin: 0 20px;
+}
+
+/* 選單文字樣式：白色、加粗、預設稍微帶一點透明 */
+.nav-links a {
+    display: block;
+    padding: 10px 0;    /* ✨ 關鍵：給文字上下加上對稱的空間，讓 Flex 更精準地抓到中線 */
+    line-height: 1;
+    text-decoration: none;
+    color: #ffffff;         
+    font-weight: 600;
+    transition: opacity 0.2s, text-decoration 0.2s;
+}
+
+/* 💡 關鍵修正：當滑鼠移上去（Hover）時，亮度全開並顯示底線 */
+.nav-links a:hover {
+    opacity: 0.85;             
+    text-decoration: underline; /* 滑鼠移上去顯現底線 */
+}
+
+
+
+
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    padding: 60px 10%;
+    background-color: #fff;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #a04020;
+    margin-bottom: 20px;
+    
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* 右側圖片區 */
+.hero-slider-container {
+    flex: 1;
+    position: relative;
+    height: 350px;
+}
+
+.hero-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #444;
+    font-size: 16px;
+}
+
+.hero-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 關鍵：讓圖片等比例縮放並填滿整個容器 */
+    border-radius: 10px; /* 讓圖片完美貼合外層的圓角，不超出邊界 */
+    display: block; /* 消除圖片下方的微小空隙 */
+}
+
+/* 共通的左右切換按鈕樣式 */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.15);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    /* 預設隱藏按鈕，做出和影片一模一樣的滑入效果 */
+    opacity: 0;
+    visibility: hidden;
+    transition: background 0.3s, transform 0.2s, opacity 0.3s, visibility 0.3s;
+}
+
+/* 左右定位 */
+.prev-btn {
+    left: 15px;
+}
+
+.next-btn {
+    right: 15px;
+}
+
+/* 滑鼠滑入圖片區域時，同時顯示左、右按鈕 */
+.hero-slider-container:hover .slider-arrow {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 滑鼠單獨移到按鈕上時的加深效果 */
+.slider-arrow:hover {
+    background: rgba(160, 64, 32, 0.85); /* 轉為品牌色 */
+}
+
+.slider-arrow:active {
+    transform: translateY(-50%) scale(0.9);
+}
+
+/* 輪播切換小圓點 */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active, .dot:hover {
+    background: #a04020;
+}
+
+/* 按鈕 */
+.btn {
+    background:#E64A19;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #D84315;
+}
+
+/* 產品展示區 */
+.products-section {
+    padding: 60px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 1.8rem;
+    color: #a04020;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* 移除超連結的預設樣式，並讓它表現得像個區塊元素 */
+.product-card-link {
+    text-decoration: none; /* 移除超連結底線 */
+    color: inherit;        /* 繼承原本文字顏色，字體不會變藍色 */
+    display: block;        /* 讓超連結填滿整個區塊範圍 */
+}
+
+/* 卡片基礎樣式與動態過渡 */
+.product-card {
+    background-color: #ffffff;
+    border-radius: 12px;     /* 圓角讓視覺更溫潤 */
+    overflow: hidden;        /* 確保內容不會超出圓角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* 微弱的陰影 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 讓滑鼠懸停動畫更流暢 */
+    cursor: pointer;         /* 滑鼠移上去時顯示手指游標 */
+}
+
+/* 滑鼠懸停 (Hover) 時的放大與陰影加深效果 */
+.product-card-link:hover .product-card {
+    transform: translateY(-5px); /* 卡片向上微微浮起 */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* 陰影加深，產生立體感 */
+}
+
+.product-img-stub {
+    height: 200px;
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-weight: bold;
+ 
+}
+
+.product-img-stub img{
+  overflow:hidden;width:100%;height:250px;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;margin-top:10px;
+}
+
+.product-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 食譜區 */
+.recipes-section {
+    background: #fff;
+    padding: 60px 10%;
+    border-top: 1px solid #eee;
+}
+
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+}
+
+/* 確保原本的卡片有這行，隱形連結才不會飄走 */
+.recipe-item {
+    position: relative; 
+    /* 你原本的其他 CSS 樣式... */
+}
+
+/* 讓超連結隱形並撐滿整個 recipe-item */
+.recipe-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* 確保它在最上層可以被點到 */
+}
+
+.recipe-item {
+    cursor: pointer; /* 讓滑鼠靠近時變成小手手圖標 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-item:hover {
+    transform: translateY(-4px); /* 滑鼠移上去時卡片稍微往上浮起 */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* 加上一點點陰影 */
+}
+
+.recipe-img {
+    width: 110px;
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+    flex-shrink: 0;margin:15px;
+}
+
+.recipe-img img{
+  width:100%;display:flex;
+  overflow: hidden;border-radius: 10px;
+}
+
+.recipe-details {
+    padding: 15px;
+}
+
+.recipe-details h4 {
+    color: #a04020;
+    margin-bottom: 5px;
+}
+
+.recipe-desc {
+    font-size: 13px;
+    color: #666;
+}
+
+.btn-link {
+    color: #a04020;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text-center { text-align: center; }
+
+/* 頁尾 */
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 14px;
+    color: #888;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+
+/* ==========================================
+   6. 仿家樂氏高質感頁尾 (Footer)
+   ========================================== */
+footer {
+    background-color: #fff; /* 上半部維持純白乾淨背景 */
+    padding-top: 50px;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+/* 頁尾主要內容置中容器 */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10% 40px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* 左側 3 欄連結網格 */
+.footer-links-grid {
+    display: flex;
+    gap: 80px; /* 欄位之間的間距 */
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* 復刻家樂氏文字連結樣式 */
+.footer-column a {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eaeaea; /* 文字下方的淡淡裝飾線 */
+    transition: color 0.2s, border-color 0.2s;
+}
+
+/* 強制連結文字在任何尺寸下絕對不換行（例如：品牌故事） */
+.footer-column a.no-wrap {
+    white-space: nowrap;
+}
+
+.footer-column a:hover {
+    color: #a04020; /* 懸停時轉品牌紅褐色 */
+    border-bottom-color: #a04020;
+}
+
+/* 右側社群媒體圖示 */
+.footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #a04020; /* 圓圈套用品牌紅褐色 */
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    background-color: #853318; /* 懸停時顏色加深 */
+}
+
+/* 最底層：滿版品牌紅底列（移除固定寬度限制，使其完全隨畫面大小自適應延伸） */
+.footer-bottom-bar {
+    width: 100%;
+    background-color: #a04020; /* 滿版品牌色 */
+    color: #fff;
+    padding: 20px 0;
+    font-size: 13px;
+}
+
+.footer-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-bottom-container .copyright {
+    color: #f5f5f5;
+    opacity: 0.9;
+}
+
+/* 最底部法律與特別連結 */
+.legal-links {
+    display: flex;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.5); /* 分隔線用淡淡的半透明白 */
+    flex-wrap: wrap; /* 讓法律聲明在極小螢幕上也能自動排版 */
+}
+
+.legal-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    white-space: nowrap; /* 讓底部小字也維持單行不雜亂 */
+}
+
+.legal-links a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+
+
+/* ==========================================
+   料理卡片點擊與互動效果
+   ========================================== */
+
+/* 💡 修正：移除超連結預設文字顏色與底線，並讓它撐滿整張卡片 */
+.product-card-link {
+    text-decoration: none; /* 移除預設底線 */
+    color: inherit; /* 繼承原本卡片內的文字顏色，防止文字變藍色 */
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 當滑鼠移到卡片上時的視覺回饋（卡片會微微浮起、變亮或加深陰影） */
+.product-card-link:hover {
+    transform: translateY(-5px); /* 卡片向上微浮 5 像素 */
+    text-decoration: none; /* 💡 確保滑鼠移上去時也不會跳出底線 */
+}
+
+.product-card-link:hover .product-card {
+    background-color: #fafafa; /* 讓卡片背景微微變亮，提示可點擊 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* 增強陰影感 */
+}
+
+/* 確保滑鼠移到卡片上時會顯示為手指圖標 */
+.product-card {
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 頁尾 RWD 響應式調整 - 完美置中修正版 */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* 💡 關鍵修正 1：將網頁版的左右 10% 內距改為 0，解除歪斜 */
+        padding: 0 0 40px 0 !important; 
+        width: 100% !important;
+        box-sizing: border-box;
+      /* 貼在同一個 @media (max-width: 768px) 裡面 */
+
+/* 修正頂端導覽列，把被卡住的內容放出來 */
+header, .navbar {
+    height: auto !important;         /* 讓高度隨內容自動撐開，字才不會不見 */
+    min-height: 50px;
+    display: flex !important;
+    flex-direction: column !important;/* 讓 Logo 和選單在手機版變成垂直排列 */
+    align-items: center !important;   /* 靠正中央對齊 */
+    padding: 20px 0 !important;
+}
+
+/* 修正包住「產品系列、精選食譜...」的選單容器 */
+/* 註：如果妳的選單是用 ul 做的，請確保它沒有被隱藏 */
+.navbar ul, .nav-links {
+    display: flex !important;        /* 強制讓它顯示出來 */
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding-left: 0 !important;       /* 清除瀏覽器預設的靠左內距 */
+    margin: 10px auto !important;
+}
+
+/* 確保選單裡面的每一個項目和文字都是滿版置中 */
+.navbar li, .navbar a {
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 10px 0 !important;     /* 增加上下間距，手機才好點擊 */
+}
+    }
+    
+    .footer-links-grid {
+        gap: 20px;
+        flex-direction: column;
+        /* 💡 關鍵修正 2：確保連結網格寬度 100% 滿版，才能精準置中 */
+        width: 100% !important; 
+        align-items: center;
+        text-align: center;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .footer-column {
+        /* 💡 關鍵修正 3：讓每一欄的寬度撐滿，文字就能依據畫面正中心對齊 */
+        width: 100% !important; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column a {
+        /* 💡 關鍵修正 4：讓超連結文字寬度滿版，文字底線才會對稱漂亮 */
+        display: inline-block;
+        width: auto;
+        min-width: 150px; /* 給予文字一固定的底線長度，視覺更一致 */
+        text-align: center;
+    }
+    
+    .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+/* RWD 響應式 */
+
+@media (max-width: 768px) {
+    /* 1. 讓導覽列容器變成垂直排列，並把所有內外距歸零避免推歪 */
+    .navbar {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 0 auto !important;
+    }
+
+    /* 2. 把原本的 display: none 改掉！讓選單文字大方秀出來，並強制置中 */
+    .nav-links { 
+        display: flex !important; 
+        flex-direction: column !important; /* 讓文字由上往下排 */
+        align-items: center !important;    /* 水平居中 */
+        width: 100% !important;
+        padding-left: 0 !important;        /* 清除瀏覽器預設的 ul 靠左內距 */
+        margin: 0 auto !important;
+    }
+
+    /* 3. 確保選單裡面的每一個項目和超連結都是滿版置中 */
+    .nav-links li, .nav-links a {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 10px 0 !important; /* 讓字與字之間有一點上下間距，比較好點擊 */
+    }
+
+    /* 以下是妳原本寫的，留著不動它們 */
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 5%;
+    }
+    
+    .hero-slider-container {
+        width: 100%;
+        height: 250px;
+    }
+    
+    /* 在行動裝置上讓按鈕直接常駐顯示，方便手指點擊 */
+    .slider-arrow {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
